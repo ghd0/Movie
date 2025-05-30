@@ -1,3 +1,6 @@
+/* استيراد خط Tajawal */
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap');
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -5,11 +8,22 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Tajawal', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #121212;
   color: #f0f0f0;
-  line-height: 1.5;
+  line-height: 1.6;
   padding: 10px;
+  min-height: 100vh;
+}
+
+/* أنميشن بسيط للصفحة */
+body.loaded {
+  opacity: 1;
+  transition: opacity 0.8s ease;
+}
+
+body:not(.loaded) {
+  opacity: 0;
 }
 
 .container {
@@ -23,10 +37,18 @@ body {
   margin-bottom: 20px;
   background-color: #8B0000;
   border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s ease;
+}
+
+.site-header:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
 }
 
 .site-header h1 {
   font-size: 24px;
+  font-weight: 700;
 }
 
 .content-area {
@@ -35,6 +57,8 @@ body {
   margin-bottom: 20px;
   padding: 20px;
   border: 1px solid #444;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s ease;
 }
 
 .section-title {
@@ -43,6 +67,18 @@ body {
   padding-bottom: 8px;
   margin-bottom: 15px;
   font-size: 20px;
+  font-weight: 500;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 80px;
+  height: 2px;
+  background: #4ECDC4;
 }
 
 .form-row {
@@ -61,7 +97,7 @@ body {
 .form-group label {
   display: block;
   margin-bottom: 5px;
-  font-weight: bold;
+  font-weight: 500;
   color: #FFD700;
 }
 
@@ -73,6 +109,15 @@ input {
   background-color: #222;
   color: #fff;
   font-size: 14px;
+  font-family: 'Tajawal', sans-serif;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: #FF6B6B;
+  box-shadow: 0 0 8px rgba(255, 107, 107, 0.5);
+  background-color: #2a2a2a;
 }
 
 button {
@@ -80,8 +125,10 @@ button {
   border: none;
   border-radius: 4px;
   padding: 10px 15px;
-  font-weight: bold;
+  font-weight: 500;
   font-size: 14px;
+  font-family: 'Tajawal', sans-serif;
+  transition: all 0.3s ease;
 }
 
 .btn-fetch {
@@ -89,6 +136,13 @@ button {
   background-color: #4ECDC4;
   color: #000;
   margin-top: 25px;
+  font-size: 20px;
+}
+
+.btn-fetch:hover {
+  background-color: #3daaa2;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .btn-add {
@@ -97,6 +151,13 @@ button {
   color: white;
   margin-top: 10px;
   padding: 12px;
+  font-size: 25px;
+}
+
+.btn-add:hover {
+  background-color: #e55a5a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .movie-list {
@@ -106,12 +167,25 @@ button {
 }
 
 .movie-card {
-  width: calc(33.333% - 20px);
+  width: calc(33.333% - 130px);
   margin: 10px;
   background-color: #2a2a2a;
   border-radius: 5px;
   overflow: hidden;
   border: 1px solid #444;
+  transition: all 0.4s ease;
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.movie-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  border-color: #FF6B6B;
 }
 
 .movie-image-container {
@@ -128,6 +202,11 @@ button {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  transition: transform 0.6s ease;
+}
+
+.movie-card:hover .movie-image {
+  transform: scale(1.03);
 }
 
 .movie-details {
@@ -138,12 +217,17 @@ button {
 
 .movie-title {
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 500;
   margin: 0 0 5px 0;
   color: #FFD700;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: color 0.3s ease;
+}
+
+.movie-card:hover .movie-title {
+  color: #4ECDC4;
 }
 
 .movie-original-title {
@@ -151,12 +235,23 @@ button {
   font-size: 14px;
   margin: 0 0 5px 0;
   font-style: italic;
+  transition: color 0.3s ease;
+}
+
+.movie-card:hover .movie-original-title {
+  color: #FF6B6B;
 }
 
 .movie-year {
   color: #4ECDC4;
   font-size: 14px;
   margin: 0 0 10px 0;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.movie-card:hover .movie-year {
+  color: #FFD700;
 }
 
 .btn-remove {
@@ -164,8 +259,16 @@ button {
   color: white;
   width: 100%;
   padding: 8px;
-  font-weight: bold;
+  font-weight: 500;
   border-radius: 4px;
+  transition: all 0.3s ease;
+  font-size: 20px
+}
+
+.btn-remove:hover {
+  background-color: #e53a62;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .empty-message {
@@ -178,6 +281,13 @@ button {
   border-radius: 5px;
   border: 1px dashed #FF6B6B;
   margin: 0 10px;
+  animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.8; }
+  50% { opacity: 1; }
+  100% { opacity: 0.8; }
 }
 
 .site-footer {
@@ -193,6 +303,10 @@ button {
   .movie-card {
     width: calc(50% - 20px);
   }
+  
+  .site-header h1 {
+    font-size: 20px;
+  }
 }
 
 @media (max-width: 600px) {
@@ -205,7 +319,7 @@ button {
   }
   
   .site-header h1 {
-    font-size: 20px;
+    font-size: 18px;
   }
   
   .section-title {

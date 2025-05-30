@@ -155,7 +155,6 @@ const UIController = (function() {
         if (confirm('هل أنت متأكد من رغبتك في حذف هذا الفيلم من القائمة؟')) {
           if (MovieManager.removeMovie(id)) {
             renderMovieList(MovieManager.getAllMovies());
-            alert('تم حذف الفيلم بنجاح!');
           }
         }
       });
@@ -205,7 +204,7 @@ const UIController = (function() {
 document.getElementById('fetch-poster').addEventListener('click', async function () {
   const title = document.getElementById('movie-title').value.trim();
   if (!title) {
-    alert("الرجاء إدخال اسم الفيلم أولاً.");
+    alert("الرجاء إدخال اسم الفيلم او المسلسل أولاً.");
     return;
   }
 
@@ -243,7 +242,7 @@ document.getElementById('fetch-poster').addEventListener('click', async function
       document.getElementById('movie-original-title').value = originalTitle;
 
     } else {
-      alert("لم يتم العثور على فيلم بهذا الاسم.");
+      alert("لم يتم العثور على فيلم او مسلسل بهذا الاسم.");
     }
   } catch (error) {
     alert("حدث خطأ أثناء جلب البيانات. الرجاء التأكد من اتصال الإنترنت.");
@@ -253,6 +252,9 @@ document.getElementById('fetch-poster').addEventListener('click', async function
 
 // Initialize application
 document.addEventListener('DOMContentLoaded', function() {
+  // Mark body as loaded to trigger fade-in animation
+  document.body.classList.add('loaded');
+  
   MovieManager.init();
   UIController.init();
 });
